@@ -11,11 +11,15 @@ app.get('/', (req, res) => {
   res.send('Welcome to my server!');
 });
 
-app.get('/captions/:videoId', (req, res) => {
+app.get('/captions/:videoId', async (req, res) => {
   console.log(req.params.videoId)
-  let captions = YoutubeTranscript.fetchTranscript(req.params.videoId).then(console.log);
-
-  res.json(captions);
+  try {
+    let captions = await YoutubeTranscript.fetchTranscript(req.params.videoId);
+    console.log(captions)
+    res.json(captions);
+  } catch (e) {
+    res.json([])
+  }
 });
 
 app.listen(port, () => {
