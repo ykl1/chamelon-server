@@ -1,5 +1,5 @@
 import express from "express";
-import { YoutubeTranscript } from "./index.js";
+import { YoutubeTranscript } from "./index.cjs";
 import cors from 'cors'
 
 const app = express();
